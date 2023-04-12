@@ -1,0 +1,63 @@
+#Defining which is the function
+
+def f(x):
+    return x*x
+
+# Calculus of Riemman
+
+def soma_de_riemann(f, iniDoIntervalo, finDoIntervalo, n):
+    variacaoBasesDx = (finDoIntervalo - iniDoIntervalo) / n
+    result = 0
+    for i in range(n):
+        pontoMedio = iniDoIntervalo + (i + (1/2)) * variacaoBasesDx
+        result += f(pontoMedio) * variacaoBasesDx
+    return result
+
+
+    print( " Bem vindo a sua calculadora de integrais pelo método de Rimann! Seu" 
++ "resultado será Mapeado na função f(x) = X² \n")
+print( " Começaremos a definir o intervalo aonde a função sera calculada a "+
+      "integração e a quantidade de áreas que ela será dividida \n")
+
+#Preview erros.
+
+while True:
+    try:
+        iniDoIntervalo = float(input("Insira o início do intervalo de "+
+                                     "integração: "))
+        finDoIntervalo = float(input("Insira final do intervalo  de "+
+                                     "integração: "))
+        
+        if iniDoIntervalo== 0 and finDoIntervalo == 0:
+          print("As variáveis a e b não podem ser nulas. Tente novamente.")
+          continue
+        break
+    except ValueError:
+        print("Cuidado ai em, Digite apenas números , por favor!")
+        continue
+
+
+while True:
+    try:
+        n = int(input("Insira o número de subintervalos, o qual a área será"+
+                      " dividida: "))
+
+        if iniDoIntervalo== 0 and finDoIntervalo == 0:
+          print("As variáveis a e b não podem ser nulas. Tente novamente.")
+          continue
+        break
+    except ValueError:
+        print("Cuidado ai em, Digite apenas números Inteiros, por favor!")
+        continue
+
+
+
+if  finDoIntervalo <= iniDoIntervalo:
+    finDoIntervalo, iniDoIntervalo = iniDoIntervalo, finDoIntervalo
+    print("Os valores foram trocados para garantir que b > a")
+    print(f"Estes são seus intervalos [{iniDoIntervalo}, {finDoIntervalo}] ")
+else:
+    print(f"Estes são seus intervalos [{iniDoIntervalo}, {finDoIntervalo}] ")
+
+
+print("Esse é seu resultado usando a Soma de Riemann: ", soma_de_riemann(f, iniDoIntervalo, finDoIntervalo, n))
